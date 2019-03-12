@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { List, Input, Button } from 'antd';
 
+import './style.css';
+
 class TodoList extends Component {
 
   state = {
@@ -10,16 +12,16 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div style={{marginTop: '20px', marginLeft: '20px'}}>
+      <div className='todo-wrapper'>
         <Input
-          style={{width: '300px', marginRight: '10px'}}
           value={this.state.inputValue}
           onChange={this.handleInputChange}
+          className='todo-input'
         />
         <Button onClick={this.handleAddTodoItem}>提交</Button>
         <List
-          style={{width: '300px', marginTop: '10px'}}
           bordered
+          className='todo-list'
           dataSource={this.state.todoItems}
           renderItem={(item, index) => (
             <TodoItem
@@ -37,7 +39,7 @@ class TodoList extends Component {
   handleAddTodoItem = () => {
     this.setState((curState) => {
       return { todoItems: [...curState.todoItems, curState.inputValue] };
-    })
+    });
   };
 
   handleDelTodoItem = (index) => {
@@ -45,7 +47,7 @@ class TodoList extends Component {
       const items = [...curState.todoItems];
       items.splice(index, 1);
       return { todoItems: items };
-    })
+    });
   };
 
   handleInputChange = (e) => this.setState({ inputValue: e.target.value });
