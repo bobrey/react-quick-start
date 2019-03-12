@@ -1,3 +1,26 @@
+## 项目说明
+
+源于慕课网 https://www.imooc.com/learn/1023, https://coding.imooc.com/class/229.html, 
+教程在此基础上删去了业务性代码, 将知识点进行提炼.
+
+教程采用文字 + `commit` 的方式. 使用 commit 代替直接粘贴代码的好处是, 更加方便的比照代码, 更加清晰的了解代码的改动.
+
+### 目录
+
+- React 基础教程
+
+- React 第三方包
+
+### TODO
+
+- Router
+
+- Redux
+
+- 异步加载
+
+- 与 flask 联调
+
 ## React 基础教程
 
 ### 1. 初始化项目
@@ -81,3 +104,72 @@ Commit: https://github.com/dyq666/react-quick-start/commit/30c3aefdbad317fbaa736
 父组件 `TodoList`, 子组件 `TodoItem`, 父组件向子组件通过属性的方式进行传值, 子组件通过 `this.props` 来接收. 子组件不允许向父组件传值, 通常是通过父组件传递的 `func` 来对父组件的属性进行操作.
 
 **测试** 打开页面, 增加, 删除都可以.
+
+## React 第三方包
+
+### 1. 组件库 AntD
+
+Commit: https://github.com/dyq666/react-quick-start/commit/b91e7dc5822659b480929a35eb49477dbdb0828a
+
+安装 `npm install --save antd`
+
+使用步骤:
+
+- 在文件中引入 css `import 'antd/dist/antd.css';`
+- 在官方文档查询组件 [AntD 文档](https://ant.design/docs/react/introduce-cn), 按照官方的代码模仿即可, 本例使用了 `List Input Button`
+
+Commit: https://github.com/dyq666/react-quick-start/commit/8131c00216c465fcde7a7052890f5c05cdd499ce
+
+将行内样式放入 `css` 中. 理论上使用 AntD 不要覆盖原有样式. 使用 css 文件时注意命名冲突, 无论在哪引入都会是全局的样式.
+
+### 2. Ajax 请求 Axios
+
+Commit: https://github.com/dyq666/react-quick-start/commit/88bb160c4acb8aa3b87e8a8bb8f875c95c05ee24
+
+安装 `npm install --save axios`
+
+在本地模拟数据时可以直接获取 `public` 中的文件即可. 例如 `axios.get('/api/index.json')` 就是获取 `/public/index.json`.
+
+### 3. 自定义样式 styled-components & iconfont
+
+Commit: https://github.com/dyq666/react-quick-start/commit/c80e095987f9097fe66f25a3cb1d4588ca13324b
+
+安装 `npm install --save styled-components`
+
+这个包支持在 js 中写样式, 并且是局部样式, 不用考虑 css 命名的问题. 这里完成了 `search` 组件. 注意 `render` 中只能返回一个节点, 因此需要在外层包一层 `div`.
+
+如果不想增加额外的 `div` 就使用 `React.Fragment` 完成, 这步放在后面的 Commit 完成了 (https://github.com/dyq666/react-quick-start/commit/9f07b5ace562c365fd70e886d094c302d2998734).
+
+Commit: https://github.com/dyq666/react-quick-start/commit/607bfa598125c08981cb2cacf2ee01b3438f31ff & https://github.com/dyq666/react-quick-start/commit/997c81b662c206a01af6eb49a409108cb885becb
+
+Iconfont 的引入和使用.
+
+在 [官网](https://www.iconfont.cn/) 添加项目使用的 icon, 然后点击购物车, 点击下载代码.
+
+![download-iconfont](https://i.loli.net/2019/03/12/5c87ba8770cef.png)
+
+下载后根据将 css/font 文件放入项目中 (具体有哪些文件, 可以参考 commit). 然后修改 `iconfont.css` 中的 url,  css-name.
+
+在全局引入样式后, 直接使用对应的 css-name 即可.
+
+Commit: https://github.com/dyq666/react-quick-start/commit/dde8921e5ace66b8359dc711e5ab208bb231dc4e
+
+搜索监听 focus/blur 来改变样式, 但是现在样式改变没有渐变, 不自然.
+
+### 4. 样式渐变 React Transition
+
+Commit: https://github.com/dyq666/react-quick-start/commit/05c17513e1aadafc96fa62b37d8345b973f1b6b6
+
+安装 `npm install --save react-transition-group`
+
+在需要渐变的组件外包一层 `CSSTransition`
+
+参数说明:
+
+- in, 监听的一个布尔值, 有改动则会触发动画渐变
+- timeout, 渐变时间
+- classNames, 指定一系列渐变 css-class 的前缀, 具体见下.
+
+in 为 `True` 时会触发 `search-enter` 和 `search-enter-active`, search 是上面 `classNames` 中指定的.
+
+in 为 `False` 时会触发 `search-exit` 和 `search-exit-active`
