@@ -42,4 +42,17 @@ export const CssSearch = styled.input.attrs({
   &.focused {
     width: 240px;
   }
+  
+  &.search-enter {
+    transition: all .2s ease-out; 
+  }
+  &.search-enter-active {
+    width: 240px;
+  }
+  &.search-exit {
+    transition: all .2s ease-out; 
+  }
+  &.search-exit-active {
+    width: 160px;
+  }
 `;

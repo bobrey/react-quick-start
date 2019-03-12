@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { CSSTransition } from 'react-transition-group';
 import React, { Component } from 'react';
 import { List, Input, Button } from 'antd';
 
@@ -98,15 +99,22 @@ class Search extends Component {
   };
 
   render() {
-    const focusedCssName = this.state.focused ? 'focused' : '';
+    const focused = this.state.focused,
+          focusedCssName = focused ? 'focused' : '';
 
     return (
       <CssSearchWrapper>
-        <CssSearch
-          onBlur={this.handleSearchBlur}
-          onFocus={this.handleSearchFocus}
-          className={focusedCssName}
-        />
+        <CSSTransition
+          in={focused}
+          timeout={200}
+          classNames='search'
+        >
+          <CssSearch
+            onBlur={this.handleSearchBlur}
+            onFocus={this.handleSearchFocus}
+            className={focusedCssName}
+          />
+        </CSSTransition>
         <i className={'iconfont icon-search ' + focusedCssName} />
       </CssSearchWrapper>
     );
