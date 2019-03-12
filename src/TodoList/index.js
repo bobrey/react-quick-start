@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List, Input, Button } from 'antd';
 
 class TodoList extends Component {
 
@@ -9,24 +10,26 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div>
-        <input
+      <div style={{marginTop: '20px', marginLeft: '20px'}}>
+        <Input
+          style={{width: '300px', marginRight: '10px'}}
           value={this.state.inputValue}
           onChange={this.handleInputChange}
         />
-        <button onClick={this.handleAddTodoItem}>提交</button>
-        <ul>
-          {
-            this.state.todoItems.map((item, index) => (
-              <TodoItem
-                key={item}
-                item={item}
-                index={index}
-                delTodoItemFunc={this.handleDelTodoItem}
-              />
-            ))
-          }
-        </ul>
+        <Button onClick={this.handleAddTodoItem}>提交</Button>
+        <List
+          style={{width: '300px', marginTop: '10px'}}
+          bordered
+          dataSource={this.state.todoItems}
+          renderItem={(item, index) => (
+            <TodoItem
+              key={item}
+              item={item}
+              index={index}
+              delTodoItemFunc={this.handleDelTodoItem}
+            />
+          )}
+        />
       </div>
     );
   }
@@ -52,9 +55,9 @@ class TodoItem extends Component {
 
   render() {
     return (
-      <li onClick={this.handleDelTodoItem}>
+      <List.Item onClick={this.handleDelTodoItem}>
         {this.props.item}
-      </li>
+      </List.Item>
     );
   }
 
