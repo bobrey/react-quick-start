@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import { List, Input, Button } from 'antd';
 
@@ -6,8 +7,8 @@ import './style.css';
 class TodoList extends Component {
 
   state = {
-    todoItems: ['1', '2'],
-    inputValue: '3'
+    todoItems: [],
+    inputValue: ''
   };
 
   render() {
@@ -35,6 +36,19 @@ class TodoList extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    const url = '/api/index.json';
+
+    axios.get(url)
+      .then((res) => {
+        this.setState({ todoItems: res.data.todoItems })
+      })
+      .catch((error) => {
+        error && console.log(`ApiError, url: ${url}, status_code: ${error.response.status}`)
+      })
+  }
+
 
   handleAddTodoItem = () => {
     this.setState((curState) => {
