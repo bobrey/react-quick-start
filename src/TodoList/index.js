@@ -93,14 +93,28 @@ class TodoItem extends Component {
 
 class Search extends Component {
 
+  state = {
+    focused: false
+  };
+
   render() {
+    const focusedCssName = this.state.focused ? 'focused' : '';
+
     return (
       <CssSearchWrapper>
-        <CssSearch />
-        <i className='iconfont icon-search' />
+        <CssSearch
+          onBlur={this.handleSearchBlur}
+          onFocus={this.handleSearchFocus}
+          className={focusedCssName}
+        />
+        <i className={'iconfont icon-search ' + focusedCssName} />
       </CssSearchWrapper>
     );
   }
+
+  handleSearchBlur = () => this.setState({ focused: false });
+
+  handleSearchFocus = () => this.setState({ focused: true });
 
 }
 

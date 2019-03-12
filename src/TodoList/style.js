@@ -12,6 +12,11 @@ export const CssSearchWrapper = styled.div`
     text-align: center;
     line-height: 30px;
     border-radius: 15px;
+    
+    &.focused {
+      color: #fff;
+      background: #777;
+    }
   }
 `;
 
@@ -32,5 +37,9 @@ export const CssSearch = styled.input.attrs({
   
   &::placeholder {
     color: #999;
+  }
+  
+  &.focused {
+    width: 240px;
   }
 `;
