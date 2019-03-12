@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { List, Input, Button } from 'antd';
 
+import { CssSearch, CssSearchWrapper } from './style';
+
 import './style.css';
 
 class TodoList extends Component {
@@ -13,27 +15,32 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div className='todo-wrapper'>
-        <Input
-          value={this.state.inputValue}
-          onChange={this.handleInputChange}
-          className='todo-input'
-        />
-        <Button onClick={this.handleAddTodoItem}>提交</Button>
-        <List
-          bordered
-          className='todo-list'
-          dataSource={this.state.todoItems}
-          renderItem={(item, index) => (
-            <TodoItem
-              key={item}
-              item={item}
-              index={index}
-              delTodoItemFunc={this.handleDelTodoItem}
-            />
-          )}
-        />
+      <div>
+        <div className='todo-wrapper'>
+          <Input
+            value={this.state.inputValue}
+            onChange={this.handleInputChange}
+            className='todo-input'
+          />
+          <Button onClick={this.handleAddTodoItem}>提交</Button>
+          <List
+            bordered
+            className='todo-list'
+            dataSource={this.state.todoItems}
+            renderItem={(item, index) => (
+              <TodoItem
+                key={item}
+                item={item}
+                index={index}
+                delTodoItemFunc={this.handleDelTodoItem}
+              />
+            )}
+          />
+        </div>
+
+        <Search />
       </div>
+
     );
   }
 
@@ -80,6 +87,18 @@ class TodoItem extends Component {
   handleDelTodoItem = () => {
     const { index, delTodoItemFunc } = this.props;
     delTodoItemFunc(index);
+  }
+
+}
+
+class Search extends Component {
+
+  render() {
+    return (
+      <CssSearchWrapper>
+        <CssSearch />
+      </CssSearchWrapper>
+    );
   }
 
 }
