@@ -12,9 +12,9 @@ class TodoList extends Component {
       <div>
         <input
           value={this.state.inputValue}
-          onChange={this.handleInputChange.bind(this)}
+          onChange={this.handleInputChange}
         />
-        <button onClick={this.handleAddTodoItem.bind(this)}>提交</button>
+        <button onClick={this.handleAddTodoItem}>提交</button>
         <ul>
           {
             this.state.todoItems.map((item) => {
@@ -28,17 +28,13 @@ class TodoList extends Component {
     );
   }
 
-  handleAddTodoItem() {
+  handleAddTodoItem = () => {
     this.setState((curState) => {
       return {todoItems: [...curState.todoItems, curState.inputValue]}
     })
-  }
+  };
 
-  handleInputChange(e) {
-    this.setState({
-      inputValue: e.target.value
-    })
-  }
+  handleInputChange = (e) => this.setState({ inputValue: e.target.value });
 
 }
 
