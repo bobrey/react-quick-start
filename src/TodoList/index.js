@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 
 class TodoList extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      todoItems: ['1', '2'],
-      inputValue: '3'
-    };
-  }
+  state = {
+    todoItems: [1, 2],
+    inputValue: '3'
+  };
 
   render() {
     return (
