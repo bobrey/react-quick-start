@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import { List, Input, Button } from 'antd';
 
 import { CssSearch, CssSearchWrapper } from './style';
@@ -16,7 +16,7 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <div className='todo-wrapper'>
           <Input
             value={this.state.inputValue}
@@ -40,7 +40,7 @@ class TodoList extends Component {
         </div>
 
         <Search />
-      </div>
+      </Fragment>
 
     );
   }
