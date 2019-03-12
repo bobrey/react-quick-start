@@ -17,13 +17,14 @@ class TodoList extends Component {
         <button onClick={this.handleAddTodoItem}>提交</button>
         <ul>
           {
-            this.state.todoItems.map((item, index) => {
-              return (
-                <li key={item} onClick={() => this.handlerDelTodoItem(index)}>
-                  {item}
-                </li>
-              )
-            })
+            this.state.todoItems.map((item, index) => (
+              <TodoItem
+                key={item}
+                item={item}
+                index={index}
+                delTodoItemFunc={this.handleDelTodoItem}
+              />
+            ))
           }
         </ul>
       </div>
@@ -32,11 +33,11 @@ class TodoList extends Component {
 
   handleAddTodoItem = () => {
     this.setState((curState) => {
-      return {todoItems: [...curState.todoItems, curState.inputValue]};
+      return { todoItems: [...curState.todoItems, curState.inputValue] };
     })
   };
 
-  handlerDelTodoItem = (index) => {
+  handleDelTodoItem = (index) => {
     this.setState((curState) => {
       const items = [...curState.todoItems];
       items.splice(index, 1);
@@ -47,4 +48,21 @@ class TodoList extends Component {
   handleInputChange = (e) => this.setState({ inputValue: e.target.value });
 }
 
-export default TodoList
+class TodoItem extends Component {
+
+  render() {
+    return (
+      <li onClick={this.handleDelTodoItem}>
+        {this.props.item}
+      </li>
+    );
+  }
+
+  handleDelTodoItem = () => {
+    const { index, delTodoItemFunc } = this.props;
+    delTodoItemFunc(index);
+  }
+
+}
+
+export default TodoList;
