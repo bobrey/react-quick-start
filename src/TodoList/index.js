@@ -97,6 +97,7 @@ class Search extends Component {
     return (
       <CssSearchWrapper>
         <CssSearch />
+        <i className='iconfont icon-search' />
       </CssSearchWrapper>
     );
   }

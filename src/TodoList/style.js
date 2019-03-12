@@ -1,7 +1,18 @@
 import styled from 'styled-components';
 
 export const CssSearchWrapper = styled.div`
+  float: left;
   position: relative;
+
+  .icon-search {
+    width: 30px;
+    right: 5px;
+    bottom: 5px;
+    position: absolute;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 15px;
+  }
 `;
 
 export const CssSearch = styled.input.attrs({
