@@ -13,8 +13,6 @@
 
 ### TODO
 
-- Router
-
 - Redux
 
 - 异步加载
@@ -173,3 +171,14 @@ Commit: https://github.com/dyq666/react-quick-start/commit/05c17513e1aadafc96fa6
 in 为 `True` 时会触发 `search-enter` 和 `search-enter-active`, search 是上面 `classNames` 中指定的.
 
 in 为 `False` 时会触发 `search-exit` 和 `search-exit-active`
+
+### 5. 路由 React Router Dom
+
+Commit: https://github.com/dyq666/react-quick-start/commit/f3b084a4fb1666f60f3dca31bb01346ada8ec68d
+
+使用步骤:
+
+- 在最外层组件(`App`) 上包裹 `BrowserRouter` 确保内层的组件都可以使用路由.
+- 使用 `Route` 创建路由, `exact` 代表完全匹配才会使用后面配置的组件. 否则 `/detail` 路由也会渲染 `/` 中配置的组件.
+- `:id` 可在 `this.props.match.params.id` 上获取, 用到的时候使用 `console.log(this.props)` 或使用上面增加的 chorme 插件观察即可, 不用死记.
+- 在其他组件中使用 <Link> 代替 <a> 进行跳转, 使用 <a> 进行跳转会重新请求, 浪费性能.
