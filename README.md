@@ -11,11 +11,9 @@
 
 - React 第三方包
 
-### TODO
+- 部署到 nginx
 
-- Redux
-
-- 与 flask 联调
+- Redux (TODO, 目前不想使用 redux)
 
 ## React 基础教程
 
@@ -179,7 +177,7 @@ Commit: https://github.com/dyq666/react-quick-start/commit/f3b084a4fb1666f60f3dc
 - 在最外层组件(`App`) 上包裹 `BrowserRouter` 确保内层的组件都可以使用路由.
 - 使用 `Route` 创建路由, `exact` 代表完全匹配才会使用后面配置的组件. 否则 `/detail` 路由也会渲染 `/` 中配置的组件.
 - `:id` 可在 `this.props.match.params.id` 上获取, 用到的时候使用 `console.log(this.props)` 或使用上面增加的 chorme 插件观察即可, 不用死记.
-- 在其他组件中使用 <Link> 代替 <a> 进行跳转, 使用 <a> 进行跳转会重新请求, 浪费性能.
+- 在其他组件中使用 `<Link>` 代替 `<a>` 进行跳转, 使用 `<a>` 进行跳转会重新请求, 浪费性能.
 
 ### 6. 按需加载组件 React Loadable
 
@@ -195,3 +193,43 @@ Commit: https://github.com/dyq666/react-quick-start/commit/fe68bf869f5b76497792e
 - 创建按需加载组件, 参数 loader 指定引入的组件, 参数 loading 表示加载过程中显示的内容
 
 **测试** 打开开发者工具, Network -> JS, 点击去详情页按钮, 发现新加载了一个 js 文件.
+
+## 部署到 nginx
+
+### 1. 安装 nginx
+
+以下步骤均为 mac 上的命令, 其他平台除了安装应该差距不大.
+
+安装 nginx `brew install nginx`
+
+启动 nginx `nginx`
+
+打开 `localhost:8080`, 显示欢迎页面, 证明 nginx 成功的安装 & 启动.
+
+### 2. react 与 nginx 
+
+生成 build 文件夹 `npm run build`
+
+修改配置文件 `vim /usr/local/etc/nginx/nginx.conf`
+
+找到下面 `http -> server -> location /` 将 root 的内容修改为上面 `npm run build` 的内容
+
+```
+http {
+    ...
+
+    server {
+        ...
+
+        location / {
+            # defautl config, modify by daiyaquan
+            # root   html;
+            # index  index.html index.htm;
+            root /Users/dyq666/Desktop/quick-start/build;
+            index index.html;
+        }
+    ...       
+}
+```
+
+打开 `localhost:8080` 显示我们写的 React 页面, 成功.
