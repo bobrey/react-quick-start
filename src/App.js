@@ -2,8 +2,8 @@ import { Input, Button } from 'antd';
 import React, { Fragment, Component } from 'react';
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
-import Detail from './Detail'
 import TodoList from './TodoList';
+import { LoadableDetail } from './loadable';
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
         <Fragment>
           <RouteSwitch />
           <Route path='/' exact component={TodoList} />
-          <Route path='/detail/:id' exact component={Detail} />
+          <Route path='/detail/:id' exact component={LoadableDetail} />
         </Fragment>
       </BrowserRouter>
     );
