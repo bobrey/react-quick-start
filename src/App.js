@@ -1,7 +1,8 @@
-import { Card, Input, Button } from 'antd';
+import { Input, Button } from 'antd';
 import React, { Fragment, Component } from 'react';
 import { Link, Route, BrowserRouter } from 'react-router-dom';
 
+import Detail from './Detail'
 import TodoList from './TodoList';
 
 class App extends Component {
@@ -17,15 +18,6 @@ class App extends Component {
     );
   }
 }
-
-const Detail = (props) => {
-  return (
-    <Card style={{width: '300px', marginTop: '20px', marginLeft: '20px'}}>
-      <p>I am detail.</p>
-      <p>My id is {props.match.params.id}</p>
-    </Card>
-  );
-};
 
 class RouteSwitch extends Component {
 
