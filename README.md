@@ -15,8 +15,6 @@
 
 - Redux
 
-- 异步加载
-
 - 与 flask 联调
 
 ## React 基础教程
@@ -182,3 +180,18 @@ Commit: https://github.com/dyq666/react-quick-start/commit/f3b084a4fb1666f60f3dc
 - 使用 `Route` 创建路由, `exact` 代表完全匹配才会使用后面配置的组件. 否则 `/detail` 路由也会渲染 `/` 中配置的组件.
 - `:id` 可在 `this.props.match.params.id` 上获取, 用到的时候使用 `console.log(this.props)` 或使用上面增加的 chorme 插件观察即可, 不用死记.
 - 在其他组件中使用 <Link> 代替 <a> 进行跳转, 使用 <a> 进行跳转会重新请求, 浪费性能.
+
+### 6. 按需加载组件 React Loadable
+
+Commit: https://github.com/dyq666/react-quick-start/commit/fb03c2dad32406ca7f92bf0f78e55c62bf0361dc
+
+把之前路由中的 Detail 单独拆分出.
+
+Commit: https://github.com/dyq666/react-quick-start/commit/fe68bf869f5b76497792eb38db67ffd4a494757e
+
+使用步骤:
+
+- 创建一个 `loadable.js`
+- 创建按需加载组件, 参数 loader 指定引入的组件, 参数 loading 表示加载过程中显示的内容
+
+**测试** 打开开发者工具, Network -> JS, 点击去详情页按钮, 发现新加载了一个 js 文件.
